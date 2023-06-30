@@ -1,0 +1,191 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#contenedorPrincipal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+
+.contenedorJugadorUno {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+    width: 100vw;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.tituloUno {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #333333;
+    font-family: 'Belanosima', sans-serif;
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    gap: 2rem;
+}
+
+.tituloUno input {
+    width: 200px;
+}
+
+.contenedorTarjeta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 20px;
+    width: 200px;
+    height: auto;
+    box-sizing: content-box;
+    font-family: 'Belanosima', sans-serif;
+}
+
+.contenedorTarjeta:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(45, 45, 45, 0.7)
+}
+
+.imgTarjeta img {
+    width: 200px;
+    height: auto;
+    vertical-align: middle;
+}
+
+.iconoTarjeta {
+    padding: 20px 0px;
+}
+
+.iconoTarjeta img {
+    width: 20px;
+    height: 20px;
+}
+
+.vidaTarjeta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.danioTarjeta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.descripcionTarjeta {
+    width: 200px;
+    height: 20px;
+    background-color: #333333;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    box-sizing: content-box;
+    text-align: center;
+    padding: 15px 0;
+}
+
+.descripcionTarjeta p {
+    color: #fff;
+    font-size: 0.7rem;
+    margin: 0 10px;
+}
+
+.tituloTarjeta {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    background-color: #060606;
+    width: 200px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    padding: 5px 0;
+}
+
+.tituloTarjeta h3 {
+    color: #a7a7a7;
+    font-size: 1rem;
+
+}
+
+.iconoTarjeta {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 200px;
+    height: 30px;
+    background-color: #060606;
+}
+
+.vidaTarjeta p {
+    color: #B44D57;
+}
+
+.danioTarjeta p {
+    color: #F4FF8A;
+}
+
+.bordeAse {
+    border: 5px solid #FA3A24
+}
+
+.tituloAse {
+    color: #FA3A24;
+    font-size: 1.5rem;
+    line-height: 1.8rem;
+}
+
+.bordeMag {
+    border: 5px solid #00B0EC;
+}
+
+.tituloMag {
+    color: #00B0EC;
+    font-size: 1.5rem;
+    line-height: 1.8rem;
+}
+
+.bordeGue {
+    border: 5px solid #79874A;
+}
+
+.tituloGue {
+    color: #79874A;
+    font-size: 1.5rem;
+    line-height: 1.8rem;
+}
+
+.bordePal {
+    border: 5px solid #AC904A;
+}
+
+.tituloPal {
+    color: #AC904A;
+    font-size: 1.5rem;
+    line-height: 1.8rem;
+}
+
+.bordeDrui {
+    border: 5px solid #2ca25f;
+}
+
+.tituloDrui {
+    color: #2ca25f;
+    font-size: 1.5rem;
+    line-height: 1.8rem;
+}

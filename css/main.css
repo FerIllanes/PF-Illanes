@@ -1,12 +1,22 @@
+/* --------------- RESET --------------- */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* --------------- CLASES GENERALES --------------- */
+
+#contenedor {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
 #contenedorPrincipal {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100vh;
@@ -15,18 +25,7 @@
     flex-wrap: wrap;
 }
 
-
-.contenedorJugadorUno {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 50vh;
-    width: 100vw;
-    gap: 2rem;
-    flex-wrap: wrap;
-}
-
-.tituloUno {
+.titulo {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -34,12 +33,128 @@
     font-family: 'Belanosima', sans-serif;
     font-weight: 600;
     font-size: 1.2rem;
-    margin-bottom: 1.5rem;
     gap: 2rem;
 }
 
-.tituloUno input {
+.titulo input {
     width: 200px;
+}
+
+.inicioBatalla {
+    color: #333333;
+    font-family: 'Belanosima', sans-serif;
+    font-size: 4rem;
+    animation: fade 3s 1 forwards;
+}
+
+@keyframes fade {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+#contenedorBatalla {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 0.5fr 3fr 0.5fr;
+    gap: 0px 0px;
+    grid-auto-flow: column;
+    grid-template-areas:
+        "tituloUno . tituloDos"
+        "tarjetaUno resultado tarjetaDos"
+        "btnUno . btnDos";
+}
+
+.tarjetaUno {
+    justify-self: center;
+    grid-area: tarjetaUno;
+    color: #333333;
+    font-family: 'Belanosima', sans-serif;
+}
+
+.tituloUno {
+    justify-self: center;
+    margin-bottom: 1.5rem;
+    grid-area: tituloUno;
+    color: #333333;
+    font-family: 'Belanosima', sans-serif;
+}
+
+.btnUno {
+    display: flex;
+    gap: 2rem;
+    justify-self: center;
+    align-self: center;
+    grid-area: btnUno;
+}
+
+.tarjetaDos {
+    justify-self: center;
+    grid-area: tarjetaDos;
+}
+
+.tituloDos {
+    justify-self: center;
+    margin-bottom: 1.5rem;
+    grid-area: tituloDos;
+    color: #333333;
+    font-family: 'Belanosima', sans-serif;
+}
+
+.btnDos {
+    display: flex;
+    gap: 2rem;
+    justify-self: center;
+    align-self: center;
+    grid-area: btnDos;
+}
+
+.resultado {
+    justify-self: center;
+    grid-area: resultado;
+}
+
+.btnAt, .btnAb{
+    display: inline-block;
+    margin-top: 1.5rem;
+    padding: 0.5rem;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Belanosima', sans-serif;
+  }
+
+
+
+/* --------------- CLASES PARA LAS TARJETAS --------------- */
+
+.contenedorJugadores {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-family: 'Belanosima', sans-serif;
+    gap: 2rem;
+}
+
+.contenedorTarjetas {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+    width: 100vw;
+    gap: 2rem;
+    flex-wrap: wrap;
 }
 
 .contenedorTarjeta {
@@ -53,7 +168,18 @@
     font-family: 'Belanosima', sans-serif;
 }
 
-.contenedorTarjeta:hover {
+.hoverTarjeta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 20px;
+    width: 200px;
+    height: auto;
+    box-sizing: content-box;
+    font-family: 'Belanosima', sans-serif;
+}
+
+.hoverTarjeta:hover {
     transform: scale(1.1);
     box-shadow: 0 0 20px rgba(45, 45, 45, 0.7)
 }
@@ -188,4 +314,8 @@
     color: #2ca25f;
     font-size: 1.5rem;
     line-height: 1.8rem;
+}
+
+.ocultar {
+    display: none;
 }

@@ -363,6 +363,17 @@ function miPrograma() {
     tag.classList.remove("ocultar")
   }
 
+  function showToast() {
+    Toastify({
+      text: "¡Hola, mundo!",
+      duration: 2000,
+      close: true,
+      container: tarjetaJugadorDe.querySelector(".vidaTarjeta p"),
+      gravity: "bottom", // Posición de la tostada dentro del contenedor (top, bottom, center)
+      position: "center", // Alineación dentro de la posición (left, center, right)
+    }).showToast();
+  }
+
   function ganador(mensaje) {
     Swal.fire({
       title: mensaje,

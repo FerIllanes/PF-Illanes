@@ -58,6 +58,8 @@ function miPrograma() {
 
   let contenedor = document.getElementById("contenedorPrincipal")
 
+  let turnoPerdido = false
+
   function renderizar(personaje, contenedor) {
     let tarjetaPersonaje = document.createElement("div")
     tarjetaPersonaje.classList.add(personaje.borde, "hoverTarjeta")
@@ -229,7 +231,8 @@ function miPrograma() {
               // Verificar si el jugador dos perdió
               if (jugadorDos.vida <= 0) {
                 // Mostrar mensaje de victoria del jugador uno
-                alert("¡Jugador uno ganó!");
+                ganador("¡Jugador uno ganó!")
+
               } else {
                 // Cambiar turno al jugador dos
                 ocultar(tituloUno);
@@ -247,7 +250,7 @@ function miPrograma() {
               // Verificar si el jugador uno perdió
               if (jugadorUno.vida <= 0) {
                 // Mostrar mensaje de victoria del jugador dos
-                alert("¡Jugador dos ganó!");
+                ganador("¡Jugador dos ganó!")
               } else {
                 // Cambiar turno al jugador uno
                 ocultar(tituloDos);
@@ -327,7 +330,7 @@ function miPrograma() {
     } else if (jugadorAt.clase === "Druida") {
       if (dado % 2 === 0) {
         jugadorDe.vida -= jugadorAt.daño
-        jugadorAt.vida += dado 
+        jugadorAt.vida += dado
         if (jugadorDe.vida < 0) {
           jugadorDe.vida = 0
         }
@@ -359,6 +362,19 @@ function miPrograma() {
   function mostrar(tag) {
     tag.classList.remove("ocultar")
   }
+
+  function ganador(mensaje) {
+    Swal.fire({
+      title: mensaje,
+      confirmButtonText: 'Jugar nuevamente',
+      confirmButtonColor: '#D61C4E',
+      background: '#333333',
+      customClass: {
+        title: 'sweetText',
+      }
+    })
+  }
+
 
   seleccionJugadorUno(personajes)
 }

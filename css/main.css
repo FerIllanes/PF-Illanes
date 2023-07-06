@@ -13,7 +13,11 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background-color: #293462;
+    
 }
+
+
 
 #contenedorPrincipal {
     display: flex;
@@ -29,7 +33,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: #333333;
+    color: #D61C4E;
     font-family: 'Belanosima', sans-serif;
     font-weight: 600;
     font-size: 1.2rem;
@@ -135,6 +139,12 @@
     font-family: 'Belanosima', sans-serif;
   }
 
+  .sweetText{
+    font-family: 'Belanosima', sans-serif;
+    font-size: 1rem;
+    color:#D61C4E;
+;
+  }
 
 
 /* --------------- CLASES PARA LAS TARJETAS --------------- */
@@ -205,6 +215,16 @@
     justify-content: center;
     gap: 0.5rem;
 }
+
+.vidaTarjeta p {
+    position: relative;
+    transition: top 0.5s ease, opacity 0.5s ease;
+  }
+  
+  .vidaTarjeta p.animate {
+    top: -10px;
+    opacity: 0;
+  }
 
 .danioTarjeta {
     display: flex;

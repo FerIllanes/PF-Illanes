@@ -8,18 +8,78 @@
 
 /* --------------- CLASES GENERALES --------------- */
 
+
 #contenedor {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #293462;
-    
+    width: 100vw;
+    background-color: #0f0e17;
+
 }
 
+.contenedorInicio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 80vh;
+    width: 80vw;
+    gap: 2rem;
+    background-image: url(../img/fondo.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 40px;
+    box-shadow: inset 0 0 50px 50px #0f0e17;
+}
 
+.contenedorInicio h2 {
+    font-family: 'Amarante', cursive;
+    font-size: 8rem;
+    line-height: 5rem;
+    color: #ffc106;
+    text-shadow: 1px -2px 10px #0f0e17;
+}
 
-#contenedorPrincipal {
+.contenedorInicio h3 {
+    color: #fffffe;
+    font-family: 'Ysabeau Infant', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 0.8rem;
+    text-shadow: 10px -2px 5px #0f0e17;
+    font-weight: 900;
+}
+
+.contenedorInicio hr {
+    width: 50rem;
+    line-height: 2rem;
+    box-shadow: 1px -2px 5px #0f0e17;
+}
+
+.btnJugar, .btnInst{
+    padding: 0.5rem 1.5rem;
+    font-size: 1rem;
+    font-family:'Belanosima', sans-serif;
+    background-color:#fffffe9d;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    border-radius: 20px;
+    color: #393840;
+    width: 10rem;
+}
+
+.btnJugar:hover{
+    background-color: #fffffe;
+}
+
+.btnInst:hover{
+    background-color: #fffffe;
+}
+
+.contenedorPrincipal {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -33,7 +93,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: #D61C4E;
+    color: #fffffe;
     font-family: 'Belanosima', sans-serif;
     font-weight: 600;
     font-size: 1.2rem;
@@ -65,7 +125,7 @@
     }
 }
 
-#contenedorBatalla {
+.contenedorBatalla {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 0.5fr 3fr 0.5fr;
@@ -126,7 +186,8 @@
     grid-area: resultado;
 }
 
-.btnAt, .btnAb{
+.btnAt,
+.btnAb {
     display: inline-block;
     margin-top: 1.5rem;
     padding: 0.5rem;
@@ -137,14 +198,14 @@
     border-radius: 5px;
     cursor: pointer;
     font-family: 'Belanosima', sans-serif;
-  }
+}
 
-  .sweetText{
+.sweetText {
     font-family: 'Belanosima', sans-serif;
     font-size: 1rem;
-    color:#D61C4E;
-;
-  }
+    color: #D61C4E;
+    ;
+}
 
 
 /* --------------- CLASES PARA LAS TARJETAS --------------- */
@@ -191,7 +252,7 @@
 
 .hoverTarjeta:hover {
     transform: scale(1.1);
-    box-shadow: 0 0 20px rgba(45, 45, 45, 0.7)
+    box-shadow: 0 0 20px #fffffe
 }
 
 .imgTarjeta img {
@@ -219,12 +280,12 @@
 .vidaTarjeta p {
     position: relative;
     transition: top 0.5s ease, opacity 0.5s ease;
-  }
-  
-  .vidaTarjeta p.animate {
+}
+
+.vidaTarjeta p.animate {
     top: -10px;
     opacity: 0;
-  }
+}
 
 .danioTarjeta {
     display: flex;

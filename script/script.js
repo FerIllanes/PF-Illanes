@@ -37,7 +37,7 @@ function miPrograma() {
     {
       clase: "Mago",
       raza: "Gnomo",
-      vida: 100,
+      vida: 110,
       daño: 20,
       habilidad: "Numero par, ataque magico que duplica el daño base",
       titulo: "tituloMag",
@@ -47,7 +47,7 @@ function miPrograma() {
     {
       clase: "Druida",
       raza: "Entidad",
-      vida: 80,
+      vida: 120,
       daño: 20,
       habilidad: "Numero par, se cura el total del numero obtenido",
       titulo: "tituloDrui",
@@ -56,9 +56,38 @@ function miPrograma() {
     }
   ]
 
-  let contenedor = document.getElementById("contenedorPrincipal")
+  let contenedor = document.querySelector(".contenedorPrincipal")
+  let contenedorInicio = document.querySelector(".contenedorInicio")
 
-  let turnoPerdido = false
+  function mostrarMenuPrincipal() {
+    ocultar(contenedor)
+    contenedorInicio.innerHTML = `
+      <h2>BATALLA ÉPICA</h2>
+      <hr>
+      <h3>HEROES Y LEYENDAS</h3>
+      <button class="btnJugar">JUGAR</button>
+      <button class="btnInst">INSTRUCCIONES</button> `
+  
+    const botonJugar = document.querySelector(".btnJugar")
+    botonJugar.addEventListener("click", () => seleccionJugadorUno(personajes))
+
+    const botonInstrucciones = document.querySelector(".btnInst")
+    botonInstrucciones.addEventListener("click", mostrarInstrucciones)
+
+  }
+
+  function mostrarInstrucciones() {
+    Swal.fire({
+      title: 'Instrucciones',
+      text: 'Instrucciones',
+      showClass: {
+        popup: 'animate__animated animate__fadeInDown'
+      },
+      hideClass: {
+        popup: 'animate__animated animate__fadeOutUp'
+      }
+    })
+  }
 
   function renderizar(personaje, contenedor) {
     let tarjetaPersonaje = document.createElement("div")
@@ -75,6 +104,7 @@ function miPrograma() {
         <div class="vidaTarjeta">
           <img src="./img/rubi.png">
           <p>${personaje.vida}</p>
+          <div class="toastContainer"></div>
         </div>
         <div class="danioTarjeta">
           <img src="./img/espada.png">
@@ -90,6 +120,9 @@ function miPrograma() {
   }
 
   function seleccionJugadorUno(array) {
+    mostrar(contenedor)
+    ocultar(contenedorInicio)
+    
     let titulo = document.createElement("div")
     titulo.classList.add("titulo")
     titulo.innerHTML = `<h2> Jugador uno, elige tu campeón </h2><input id="filtroJugadorUno" placeholder="Filtra por clase/raza">`
@@ -197,7 +230,7 @@ function miPrograma() {
 
       setTimeout(() => {
         contenedor.remove()
-        let contenedorBatalla = document.getElementById("contenedorBatalla")
+        let contenedorBatalla = document.querySelector(".contenedorBatalla")
         let tituloUno = document.createElement("div")
         tituloUno.classList.add("tituloUno")
         let tituloDos = document.createElement("div")
@@ -225,9 +258,9 @@ function miPrograma() {
 
         function realizarTurno(booleano) {
           if (booleano && jugadorUno.vida > 0) {
-            mensajeBatalla(jugadorUno, tituloUno, btnUno);
+            mensajeBatalla(jugadorUno, tituloUno, btnUno)
             btnUno.querySelector(".btnAt").addEventListener("click", () => {
-              batallaTurnos(jugadorUno, jugadorDos, tarjetaJugadorUno, tarjetaJugadorDos);
+              batallaTurnos(jugadorUno, jugadorDos, tarjetaJugadorUno, tarjetaJugadorDos)
               // Verificar si el jugador dos perdió
               if (jugadorDos.vida <= 0) {
                 // Mostrar mensaje de victoria del jugador uno
@@ -235,38 +268,38 @@ function miPrograma() {
 
               } else {
                 // Cambiar turno al jugador dos
-                ocultar(tituloUno);
-                ocultar(btnUno);
+                ocultar(tituloUno)
+                ocultar(btnUno)
                 // Mostrar los elementos del jugador dos
-                mostrar(tituloDos);
-                mostrar(btnDos);
-                realizarTurno(false);
+                mostrar(tituloDos)
+                mostrar(btnDos)
+                realizarTurno(false)
               }
             });
           } else if (!booleano && jugadorDos.vida > 0) {
-            mensajeBatalla(jugadorDos, tituloDos, btnDos);
+            mensajeBatalla(jugadorDos, tituloDos, btnDos)
             btnDos.querySelector(".btnAt").addEventListener("click", () => {
-              batallaTurnos(jugadorDos, jugadorUno, tarjetaJugadorDos, tarjetaJugadorUno);
+              batallaTurnos(jugadorDos, jugadorUno, tarjetaJugadorDos, tarjetaJugadorUno)
               // Verificar si el jugador uno perdió
               if (jugadorUno.vida <= 0) {
                 // Mostrar mensaje de victoria del jugador dos
                 ganador("¡Jugador dos ganó!")
               } else {
                 // Cambiar turno al jugador uno
-                ocultar(tituloDos);
-                ocultar(btnDos);
+                ocultar(tituloDos)
+                ocultar(btnDos)
                 // Mostrar los elementos del jugador uno
-                mostrar(tituloUno);
-                mostrar(btnUno);
-                realizarTurno(true);
+                mostrar(tituloUno)
+                mostrar(btnUno)
+                realizarTurno(true)
               }
-            });
+            })
           }
         }
 
-        ocultar(tituloDos);
-        ocultar(btnDos);
-        realizarTurno(true);
+        ocultar(tituloDos)
+        ocultar(btnDos)
+        realizarTurno(true)
 
       }, 500)
     })
@@ -363,17 +396,6 @@ function miPrograma() {
     tag.classList.remove("ocultar")
   }
 
-  function showToast() {
-    Toastify({
-      text: "¡Hola, mundo!",
-      duration: 2000,
-      close: true,
-      container: tarjetaJugadorDe.querySelector(".vidaTarjeta p"),
-      gravity: "bottom", // Posición de la tostada dentro del contenedor (top, bottom, center)
-      position: "center", // Alineación dentro de la posición (left, center, right)
-    }).showToast();
-  }
-
   function ganador(mensaje) {
     Swal.fire({
       title: mensaje,
@@ -383,11 +405,15 @@ function miPrograma() {
       customClass: {
         title: 'sweetText',
       }
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.href = 'index.html'
+      }
     })
   }
 
-
-  seleccionJugadorUno(personajes)
+  mostrarMenuPrincipal()
+  
 }
 
 miPrograma()

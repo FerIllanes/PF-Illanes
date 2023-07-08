@@ -252,7 +252,7 @@ function conocerClase(clase) {
 
 let opcion = "BATALLAS EPICAS \n 1- Jugar \n 2- Instrucciones \n 3- Conoce las clases  \n 0- Salir"
 let mensajeBienvenida
-let mensajeInstruccion = "'BATALLAS EPICAS', es un juego por turnos de 2 jugadores \n 1- Cada jugador seleccionara un campeon, cada campeon tiene su habilidad especial\n2- El combate consiste en lanzar el dado, cada campeon tiene ciertas caracteristicas basicas y una habilidad especial que se activara si el dado saca ciertos numeros\n4- El jugador que logre dejar en cero la vida de su adversario ganara la BATALLA EPICA! "
+let mensajeInstruccion = "'BATALLAS EPICAS', es un juego por turnos de 2 jugadores \n 1- Cada jugador seleccionara un campeon, cada campeon tiene su habilidad especial\n2- El combate consiste en lanzar el dado, cada campeon tiene ciertas caracteristicas basicas y una habilidad especial que se activara si el dado saca ciertos numeros\n4- El jugador que logre dejar en cero la vida de su adversario ganara la BATALLA EPICA!"
 let mesajePersonaje = ""
 miPrograma()
 

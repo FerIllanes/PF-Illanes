@@ -83,7 +83,7 @@ function miPrograma() {
       customClass: {
         title: 'sweetTextIns',
       },
-      html: '<div class="contenedorInst"><div><img class="imgInst" src="../img/dado.svg" alt=""><p class="infoInst">DADO</p></div><div><img class="imgInst" src="../img/rubi.png" alt=""><p class="infoInst">VIDA BASE</p></div><div><img class="imgInst" src="../img/espada.png" alt=""><p class="infoInst">DAÑO BASE</p></div></div>',
+      html: '<div class="contenedorInst"><div><img class="imgInst" src="./img/dado.svg" alt=""><p class="infoInst">DADO</p></div><div><img class="imgInst" src="./img/rubi.png" alt=""><p class="infoInst">VIDA BASE</p></div><div><img class="imgInst" src="./img/espada.png" alt=""><p class="infoInst">DAÑO BASE</p></div></div>',
       showClass: {
         popup: 'animate__animated animate__fadeInDown'
       },
@@ -459,7 +459,7 @@ function miPrograma() {
     fxDe.classList.remove("fx")
     contenedorTitulo.innerHTML = `<h2>Turno ${jugador.clase}</h2>`
     contenedorAccion.innerHTML = `<button class="btnAb">Abandonar</button>`
-    contenedorResultado.innerHTML = `<img class="dado" src="../img/dado.svg" alt="">`
+    contenedorResultado.innerHTML = `<img class="dado" src="./img/dado.svg" alt="">`
   }
 
   // FUNCION PARA LANZAR EL DADO

@@ -1,0 +1,518 @@
+/* --------------- RESET --------------- */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* --------------- CLASES GENERALES --------------- */
+
+
+#contenedor {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: #0f0e17;
+
+}
+
+.contenedorInicio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 80vh;
+    width: 80vw;
+    gap: 2rem;
+    background-image: url(../img/fondo.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 40px;
+    box-shadow: inset 0 0 50px 50px #0f0e17;
+}
+
+.contenedorInicio h2 {
+    font-family: 'Amarante', cursive;
+    font-size: 8rem;
+    line-height: 5rem;
+    color: #ffc106;
+    text-shadow: 1px -2px 10px #0f0e17;
+}
+
+.contenedorInicio h3 {
+    color: #fffffe;
+    font-family: 'Ysabeau Infant', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 0.8rem;
+    text-shadow: 10px -2px 5px #0f0e17;
+    font-weight: 900;
+}
+
+.contenedorInicio hr {
+    width: 50rem;
+    line-height: 2rem;
+    box-shadow: 1px -2px 5px #0f0e17;
+}
+
+.btnJugar,
+.btnInst {
+    padding: 0.5rem 1.5rem;
+    font-size: 1rem;
+    font-family: 'Belanosima', sans-serif;
+    background-color: #fffffeaf;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    border-radius: 20px;
+    color: #393840;
+    width: 10rem;
+}
+
+.btnJugar {
+    font-weight: bold;
+}
+
+.btnJugar:hover {
+    background-color: #fffffe;
+}
+
+.btnInst:hover {
+    background-color: #fffffe;
+}
+
+.contenedorPrincipal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.titulo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #fffffe;
+    font-family: 'Belanosima', sans-serif;
+    font-weight: 600;
+    font-size: 2rem;
+    gap: 2rem;
+}
+
+.titulo input {
+    width: 200px;
+    border-radius: 1rem;
+    height: 1.5rem;
+    outline: none;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.inicioBatalla {
+    color: #fffffe;
+    font-family: 'Belanosima', sans-serif;
+    font-size: 4rem;
+    animation: fade 3s 1 forwards;
+}
+
+@keyframes fade {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.contenedorBatalla {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 0.5fr 3fr 0.5fr;
+    gap: 0px 0px;
+    column-gap: 2rem;
+    grid-auto-flow: column;
+    grid-template-areas:
+        "tituloUno . tituloDos"
+        "tarjetaUno resultado tarjetaDos"
+        "btnUno . btnDos";
+}
+
+.resultado {
+    grid-area: resultado;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.dado {
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    transition: transform 0.5s ease;
+}
+
+.dado:hover {
+    filter: drop-shadow(0px 0px 30px #d43060);
+    transform: translateY(-20px);
+}
+
+.tarjetaUno {
+    justify-self: center;
+    grid-area: tarjetaUno;
+}
+
+.fx {
+    filter: drop-shadow(3px 3px 15px #fffffeb0);
+}
+
+.tituloUno {
+    justify-self: center;
+    margin-bottom: 1.5rem;
+    grid-area: tituloUno;
+    color: #fffffe;
+    font-family: 'Belanosima', sans-serif;
+}
+
+.btnUno {
+    display: flex;
+    gap: 2rem;
+    justify-self: center;
+    align-self: center;
+    grid-area: btnUno;
+}
+
+.tarjetaDos {
+    justify-self: center;
+    grid-area: tarjetaDos;
+}
+
+.tituloDos {
+    justify-self: center;
+    margin-bottom: 1.5rem;
+    grid-area: tituloDos;
+    color: #fffffe;
+    font-family: 'Belanosima', sans-serif;
+}
+
+.btnDos {
+    display: flex;
+    gap: 2rem;
+    justify-self: center;
+    align-self: center;
+    grid-area: btnDos;
+}
+
+.resultado {
+    justify-self: center;
+    grid-area: resultado;
+}
+
+.resultadoDado {
+    justify-self: center;
+    align-self: center;
+    color: #d43060;
+    font-family: 'Belanosima', sans-serif;
+    font-weight: 400;
+    font-size: 10rem;
+}
+
+.resultadoInfo {
+    justify-self: center;
+    align-self: center;
+    color: #fffffe;
+    font-family: 'Belanosima', sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+}
+
+.btnAb {
+    margin-top: 1.5rem;
+    padding: 0.5rem 0.5rem;
+    font-size: 0.8rem;
+    font-family: 'Belanosima', sans-serif;
+    background-color: #fffffe9d;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    border-radius: 20px;
+    color: #393840;
+}
+
+.btnAb:hover {
+    background-color: #fffffe;
+}
+
+.sweetText {
+    font-family: 'Belanosima', sans-serif;
+    font-size: 2rem;
+    color: #0f0e17;
+}
+
+.sweetTextIns {
+    font-family: 'Belanosima', sans-serif;
+    font-weight: 200;
+    font-size: 1.2rem;
+    color: #0f0e17;
+}
+
+.contenedorInst {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 1rem 0;
+}
+
+.imgInst {
+    width: 50px;
+    height: 50px;
+}
+
+.infoInst {
+    font-family: 'Belanosima', sans-serif;
+    font-weight: 200;
+    font-size: 0.8rem;
+    color: #0f0e17;
+}
+
+
+/* --------------- CLASES PARA LAS TARJETAS --------------- */
+
+.contenedorJugadores {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-family: 'Belanosima', sans-serif;
+    gap: 2rem;
+}
+
+.contenedorTarjetas {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+    width: 100vw;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.contenedorTarjeta {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    align-items: center;
+    border-radius: 20px;
+    width: 200px;
+    height: auto;
+    box-sizing: content-box;
+    font-family: 'Belanosima', sans-serif;
+}
+
+.hoverTarjeta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 20px;
+    width: 200px;
+    height: auto;
+    box-sizing: content-box;
+    font-family: 'Belanosima', sans-serif;
+    cursor: pointer;
+}
+
+.hoverTarjeta:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px #fffffe;
+}
+
+.imgTarjeta img {
+    width: 200px;
+    height: auto;
+    vertical-align: middle;
+}
+
+.iconoTarjeta {
+    padding: 20px 0px;
+}
+
+.iconoTarjeta img {
+    width: 20px;
+    height: 20px;
+}
+
+.vidaTarjeta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.vidaTarjeta p {
+    position: relative;
+    transition: top 0.5s ease, opacity 0.5s ease;
+}
+
+.vidaTarjeta p.animate {
+    top: -10px;
+    opacity: 0;
+}
+
+.danioTarjeta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.descripcionTarjeta {
+    width: 200px;
+    height: 20px;
+    background-color: #333333;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    box-sizing: content-box;
+    text-align: center;
+    padding: 15px 0;
+}
+
+.descripcionTarjeta p {
+    color: #fff;
+    font-size: 0.7rem;
+    margin: 0 10px;
+}
+
+.tituloTarjeta {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    background-color: #060606;
+    width: 200px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    padding: 5px 0;
+}
+
+.tituloTarjeta h3 {
+    color: #a7a7a7;
+    font-size: 1rem;
+
+}
+
+.iconoTarjeta {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 200px;
+    height: 30px;
+    background-color: #060606;
+}
+
+.vidaTarjeta p {
+    color: #B44D57;
+}
+
+.danioTarjeta p {
+    color: #F4FF8A;
+}
+
+.bordeAse {
+    border: 5px solid #FA3A24
+}
+
+.tituloAse {
+    color: #FA3A24;
+    font-size: 1.5rem;
+    line-height: 1.8rem;
+}
+
+.bordeMag {
+    border: 5px solid #00B0EC;
+}
+
+.tituloMag {
+    color: #00B0EC;
+    font-size: 1.5rem;
+    line-height: 1.8rem;
+}
+
+.bordeGue {
+    border: 5px solid #79874A;
+}
+
+.tituloGue {
+    color: #79874A;
+    font-size: 1.5rem;
+    line-height: 1.8rem;
+}
+
+.bordePal {
+    border: 5px solid #AC904A;
+}
+
+.tituloPal {
+    color: #AC904A;
+    font-size: 1.5rem;
+    line-height: 1.8rem;
+}
+
+.bordeDrui {
+    border: 5px solid #2ca25f;
+}
+
+.tituloDrui {
+    color: #2ca25f;
+    font-size: 1.5rem;
+    line-height: 1.8rem;
+}
+
+.ocultar {
+    display: none;
+}
+
+.ocultarTurno {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.mostrarTurno {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.shake {
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    50% {
+        transform: translateX(5px);
+    }
+
+    75% {
+        transform: translateX(-5px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}

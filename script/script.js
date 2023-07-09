@@ -1,265 +1,511 @@
-//ARRAYS
-const personajes = [
-  {
-    clase: "Guerrero",
-    vida: 200,
-    daño: 18,
-    habilidad: "Genera el daño base mas el numero que salga en el dado, si sale 5 o 10 falla el golpe"
-  },
-  {
-    clase: "Asesino",
-    vida: 100,
-    daño: 15,
-    habilidad: "Numero Impar, Apuñala y triplica el daño"
-  },
-  {
-    clase: "Paladin",
-    vida: 150,
-    daño: 20,
-    habilidad: "Numero 6 o 12, genera un ataque potenciado que aplica el daño mas un 50% del mismo"
-  },
-  {
-    clase: "Mago",
-    vida: 100,
-    daño: 10,
-    habilidad: "Numero par, ataque magico que duplica el daño"
-  }
-]
 
-//FUNCIONES
 function miPrograma() {
-  let jugadorUnoClase, jugadorDosClase
-  do {
-    mensajeBienvenida = prompt(opcion).trim()
 
-    if (mensajeBienvenida.length === 0) {
-      continue
+  const personajes = [
+    {
+      clase: "Guerrero",
+      raza: "Orco",
+      vida: 200,
+      daño: 18,
+      habilidad: "Genera daño base + el numero obtenido, si el numero es 5-10 fallará",
+      titulo: "tituloGue",
+      borde: "bordeGue",
+      rutaImg: "guerrero.png"
+    },
+    {
+      clase: "Asesino",
+      raza: "Elfo Oscuro",
+      vida: 100,
+      daño: 15,
+      habilidad: "Numero Impar, Apuñala y triplica el daño base",
+      titulo: "tituloAse",
+      borde: "bordeAse",
+      rutaImg: "asesino.png"
+    },
+    {
+      clase: "Paladín",
+      raza: "Humano",
+      vida: 150,
+      daño: 20,
+      habilidad: "Numero: 2-6-12, potencia el daño base con un 50% del mismo",
+      titulo: "tituloPal",
+      borde: "bordePal",
+      rutaImg: "paladin.png"
+    },
+    {
+      clase: "Mago",
+      raza: "Gnomo",
+      vida: 110,
+      daño: 20,
+      habilidad: "Numero par, ataque magico que duplica el daño base",
+      titulo: "tituloMag",
+      borde: "bordeMag",
+      rutaImg: "mago.png"
+    },
+    {
+      clase: "Druida",
+      raza: "Entidad",
+      vida: 120,
+      daño: 20,
+      habilidad: "Numero par, absorbe la vida de su enemigo igual al daño base",
+      titulo: "tituloDrui",
+      borde: "bordeDrui",
+      rutaImg: "druida.png"
     }
+  ]
 
-    mensajeBienvenida = Number(mensajeBienvenida)
+  let contenedor = document.querySelector(".contenedorPrincipal")
+  let contenedorInicio = document.querySelector(".contenedorInicio")
 
-    if (mensajeBienvenida === 1) {
-      jugadorUnoClase = seleccionarClase("Jugador uno")
-      jugadorDosClase = seleccionarClase("Jugador dos")
+  function mostrarMenuPrincipal() {
+    ocultar(contenedor)
+    contenedorInicio.innerHTML = `
+      <h2>BATALLA ÉPICA</h2>
+      <hr>
+      <h3>HEROES Y LEYENDAS</h3>
+      <button class="btnJugar">JUGAR</button>
+      <button class="btnInst">INSTRUCCIONES</button> `
 
-      const jugadorUno = { ...personajes.find(personaje => personaje.clase.toLocaleLowerCase() === jugadorUnoClase) }
-      const jugadorDos = { ...personajes.find(personaje => personaje.clase.toLocaleLowerCase() === jugadorDosClase) }
+    const botonJugar = document.querySelector(".btnJugar")
+    botonJugar.addEventListener("click", () => seleccionJugadorUno(personajes))
 
-      alert("¡COMIENZA LA BATALLA!")
+    const botonInstrucciones = document.querySelector(".btnInst")
+    botonInstrucciones.addEventListener("click", mostrarInstrucciones)
 
-      batallaPorTurnos(jugadorUno, jugadorDos)
-
-    } else if (mensajeBienvenida === 2) {
-      alert(mensajeInstruccion)
-    } else if (mensajeBienvenida === 3) {
-      let clase = prompt(`Escribe la clase que deseas conocer:\n${listar(personajes)}\n0 Para volver`).toLocaleLowerCase()
-      conocerClase(clase)
-    }
-  } while (mensajeBienvenida !== 0)
-  alert("Gracias por jugar, te esperamos en tu siguiente batalla")
-}
-
-function batallaPorTurnos(jugadorUno, jugadorDos) {
-  let turno = 1
-
-  while (jugadorUno.vida > 0 && jugadorDos.vida > 0) {
-    alert(`Turno ${turno}\nJugador uno: ${jugadorUno.clase} - Vida: ${jugadorUno.vida}\nJugador dos: ${jugadorDos.clase} - Vida: ${jugadorDos.vida}`)
-
-    // Turno de jugadorUno
-
-    const accionJugadorUno = mensajeBatalla("uno")
-    if (accionJugadorUno === 1) {
-      if (jugadorUno.clase === "Guerrero") {
-        // Implementar lógica para el Guerrero
-        const dado = lanzarDado()
-        if (dado === 5 || dado === 10) {
-          alert(`Jugador uno:\nHas sacado un ${dado}¡Has fallado el golpe!`)
-        } else {
-          jugadorDos.vida -= (jugadorUno.daño + dado)
-          alert(`Jugador uno:\nHas sacado un ${dado}, tu ataque es de ${jugadorUno.daño + dado}`)
-        }
-      } else if (jugadorUno.clase === "Asesino") {
-        // Implementar lógica para el Asesino
-        const dado = lanzarDado()
-        if (dado % 2 !== 0) {
-          jugadorDos.vida -= (jugadorUno.daño * 3)
-          alert(`Jugador uno:\nHas sacado un ${dado}, tu ataque es de ${jugadorUno.daño * 3}`)
-        } else {
-          jugadorDos.vida -= jugadorUno.daño
-          alert(`Jugador uno:\nHas sacado un ${dado}, tu ataque es de ${jugadorUno.daño}`)
-        }
-      } else if (jugadorUno.clase === "Paladin") {
-        // Implementar lógica para el Paladin
-        const dado = lanzarDado()
-        if (dado === 2 || dado === 6 || dado === 10) {
-          jugadorDos.vida -= (jugadorUno.daño * 1.5)
-          alert(`Jugador uno:\nHas sacado un ${dado}, tu ataque es de ${jugadorUno.daño * 1.5}`)
-        } else {
-          jugadorDos.vida -= jugadorUno.daño
-          alert(`Jugador uno:\nHas sacado un ${dado}, tu ataque es de ${jugadorUno.daño}`)
-        }
-      } else if (jugadorUno.clase === "Mago") {
-        // Implementar lógica para el Mago
-        const dado = lanzarDado()
-        if (dado % 2 === 0) {
-          jugadorDos.vida -= (jugadorUno.daño * 2)
-          alert(`Jugador uno:\nHas sacado un ${dado}, tu ataque es de ${jugadorUno.daño * 2}`)
-        } else {
-          jugadorDos.vida -= jugadorUno.daño
-          alert(`Jugador uno:\nHas sacado un ${dado}, tu ataque es de ${jugadorUno.daño}`)
-        }
-      }
-
-      // Verificar si jugadorDos quedó sin vida
-      if (jugadorDos.vida <= 0) {
-        alert("¡Jugador Uno ganó!")
-        break
-      }
-    } else if (accionJugadorUno === 0) {
-      alert("El Jugador Uno ha abandonado la batalla. ¡Jugador Dos gana!")
-      break
-    }
-
-    // Turno de jugadorDos
-
-    const accionJugadorDos = mensajeBatalla("dos")
-    if (accionJugadorDos === 1) {
-      if (jugadorDos.clase === "Guerrero") {
-        // Implementar lógica para el Guerrero
-        const dado = lanzarDado()
-        if (dado === 5 || dado === 10) {
-          alert(`Jugador dos:\nHas sacado un ${dado}¡Has fallado el golpe!`)
-        } else {
-          jugadorUno.vida -= (jugadorDos.daño + dado)
-          alert(`Jugador dos:\nHas sacado un ${dado}, tu ataque es de ${jugadorDos.daño + dado}`)
-        }
-      } else if (jugadorDos.clase === "Asesino") {
-        // Implementar lógica para el Asesino
-        const dado = lanzarDado()
-        if (dado % 2 !== 0) {
-          jugadorUno.vida -= (jugadorDos.daño * 3)
-          alert(`Jugador dos:\nHas sacado un ${dado}, tu ataque es de ${jugadorDos.daño * 3}`)
-        } else {
-          jugadorUno.vida -= jugadorDos.daño
-          alert(`Jugador dos:\nHas sacado un ${dado}, tu ataque es de ${jugadorDos.daño}`)
-        }
-      } else if (jugadorDos.clase === "Paladin") {
-        // Implementar lógica para el Paladin
-        const dado = lanzarDado()
-        if (dado === 2 || dado === 6 || dado === 10) {
-          jugadorUno.vida -= (jugadorDos.daño * 1.5)
-          alert(`Jugador dos:\nHas sacado un ${dado}, tu ataque es de ${jugadorDos.daño * 1.5}`)
-        } else {
-          jugadorUno.vida -= jugadorDos.daño
-          alert(`Jugador dos:\nHas sacado un ${dado}, tu ataque es de ${jugadorDos.daño}`)
-        }
-      } else if (jugadorDos.clase === "Mago") {
-        // Implementar lógica para el Mago
-        const dado = lanzarDado()
-        if (dado % 2 === 0) {
-          jugadorUno.vida -= (jugadorDos.daño * 2)
-          alert(`Jugador dos:\nHas sacado un ${dado}, tu ataque es de ${jugadorDos.daño * 2}`)
-        } else {
-          jugadorUno.vida -= jugadorDos.daño
-          alert(`Jugador dos:\nHas sacado un ${dado}, tu ataque es de ${jugadorDos.daño}`)
-        }
-      }
-      // Verificar si jugadorUno quedó sin vida
-      if (jugadorUno.vida <= 0) {
-        alert("¡Jugador Dos ganó!")
-        break
-      }
-    } else if (accionJugadorDos === 0) {
-      alert("El Jugador Dos ha abandonado la batalla. ¡Jugador Uno gana!")
-      break
-    } turno++
   }
-}
 
-function mensajeBatalla(jugador) {
-  let mensajeBatallaUno, mensajeBatallaDos
+  function mostrarInstrucciones() {
+    Swal.fire({
+      padding:'2rem',
+      title: '"BATALLA ÉPICA" es un juego por turnos para 2 jugadores. Cada jugador selecciona un campeón, cada uno con su habilidad especial única. El combate se lleva a cabo lanzando un dado, donde cada campeón tiene características básicas y una habilidad especial que se activa al obtener ciertos números en el dado. El jugador que logre reducir la vida de su adversario a cero será el ganador de esta épica batalla.',
+      confirmButtonColor: '#f25f4c',
+      background: '#fffffe',
+      customClass: {
+        title: 'sweetTextIns',
+      },
+      html: '<div class="contenedorInst"><div><img class="imgInst" src="../img/dado.svg" alt=""><p class="infoInst">DADO</p></div><div><img class="imgInst" src="../img/rubi.png" alt=""><p class="infoInst">VIDA BASE</p></div><div><img class="imgInst" src="../img/espada.png" alt=""><p class="infoInst">DAÑO BASE</p></div></div>',
+      showClass: {
+        popup: 'animate__animated animate__fadeInDown'
+      },
+      hideClass: {
+        popup: 'animate__animated animate__fadeOutUp'
+      }
+    })
+  }
 
-  do {
-    if (jugador === "uno") {
-      do {
-        mensajeBatallaUno = prompt("Jugador uno, selecciona una opción:\n1- Lanzar dado\n0- Abandonar la batalla").trim()
-      } while (mensajeBatallaUno !== "1" && mensajeBatallaUno !== "0")
+  function renderizar(personaje, contenedor) {
+    let tarjetaPersonaje = document.createElement("div")
+    tarjetaPersonaje.classList.add(personaje.borde, "hoverTarjeta")
+    tarjetaPersonaje.innerHTML = `
+      <div class="tituloTarjeta">
+        <h2 class="${personaje.titulo}">${personaje.clase}</h2>
+        <h3>${personaje.raza}</h3>
+      </div>
+      <div class="imgTarjeta">
+        <img src="./img/${personaje.rutaImg}">
+      </div>
+      <div class="iconoTarjeta">
+        <div class="vidaTarjeta">
+          <img src="./img/rubi.png">
+          <p>${personaje.vida}</p>
+          <div class="toastContainer"></div>
+        </div>
+        <div class="danioTarjeta">
+          <img src="./img/espada.png">
+          <p>${personaje.daño}</p>
+        </div>
+      </div>
+      <div class="descripcionTarjeta">
+        <p>${personaje.habilidad}</p>
+      </div>
+    `
+    contenedor.appendChild(tarjetaPersonaje)
+    return tarjetaPersonaje
+  }
 
-      return mensajeBatallaUno === "" ? undefined : Number(mensajeBatallaUno)
-    } else if (jugador === "dos") {
-      do {
-        mensajeBatallaDos = prompt("Jugador dos, selecciona una opción:\n1- Lanzar dado\n0- Abandonar la batalla").trim()
-      } while (mensajeBatallaDos !== "1" && mensajeBatallaDos !== "0")
+  function seleccionJugadorUno(array) {
+    mostrar(contenedor)
+    ocultar(contenedorInicio)
 
-      return mensajeBatallaDos === "" ? undefined : Number(mensajeBatallaDos)
+    let titulo = document.createElement("div")
+    titulo.classList.add("titulo")
+    titulo.innerHTML = `<h2> Jugador uno, elige tu campeón </h2><input id="filtroJugadorUno" placeholder="Filtra por clase/raza">`
+    contenedor.appendChild(titulo)
+
+    let contenedorTarjetas = document.createElement("div")
+    contenedorTarjetas.classList.add("contenedorTarjetas")
+    contenedor.appendChild(contenedorTarjetas)
+
+    function filtrarPersonajes(array, filtro) {
+      const filtroMin = filtro.toLowerCase()
+      const personajesFiltrados = array.filter(personaje => {
+        const clase = personaje.clase.toLowerCase()
+        const raza = personaje.raza.toLowerCase()
+        return clase.includes(filtroMin) || raza.includes(filtroMin)
+      })
+      return personajesFiltrados
     }
-  } while (true)
-}
 
-function lanzarDado() {
-  return Math.floor(Math.random() * 12) + 1
-}
+    function renderizarPersonajes(personajes, contenedor) {
+      contenedor.innerHTML = ""
 
-function listar(array) {
-  let listado = ""
-  array.forEach(element => {
-    listado += element.clase + "\n"
-  })
-  return listado
-}
+      personajes.forEach(personaje => {
+        let tarjetaPersonaje = renderizar(personaje, contenedor);
 
-function seleccionarClase(jugador) {
-  let clase
-  do {
-    clase = prompt(`${jugador}, elige tu clase:\n${listar(personajes)}`).toLocaleLowerCase()
-    if (!personajes.find(personaje => personaje.clase.toLocaleLowerCase() === clase)) {
-      alert("La clase ingresada no existe. Por favor, elige una clase existente.")
-    }
-  } while (!personajes.find(personaje => personaje.clase.toLocaleLowerCase() === clase))
+        tarjetaPersonaje.addEventListener("click", () => {
+          sessionStorage.setItem("jugadorUno", JSON.stringify(personaje))
+          contenedorTarjetas.removeChild(tarjetaPersonaje)
+          let nuevasTarjetas = array.filter(p => p !== personaje)
 
-  return clase
-}
-
-function buscarClase(tipo) {
-  const personaje = personajes.find(personaje => personaje.clase.toLocaleLowerCase() === tipo)
-  alert(`Clase: ${personaje.clase}\nVida: ${personaje.vida}\nDaño: ${personaje.daño}\nHabilidad: ${personaje.habilidad}`)
-}
-
-function conocerClase(clase) {
-  do {
-    if (clase === "guerrero") {
-      buscarClase(clase)
-    } else if (clase === "asesino") {
-      buscarClase(clase)
-    } else if (clase === "paladin") {
-      buscarClase(clase)
-    } else if (clase === "druida") {
-      buscarClase(clase)
-    } else if (clase === "mago") {
-      buscarClase(clase)
-    } else if (clase !== "0") {
-      alert("La clase ingresada no existe.")
+          ocultar(contenedorTarjetas)
+          ocultar(titulo);
+          seleccionJugadorDos(nuevasTarjetas)
+        })
+      })
     }
 
+    let inputJugadorUno = document.getElementById("filtroJugadorUno")
+    inputJugadorUno.addEventListener("input", () => {
+      const filtro = inputJugadorUno.value
+      const personajesFiltrados = filtrarPersonajes(array, filtro)
+      renderizarPersonajes(personajesFiltrados, contenedorTarjetas)
+    })
 
-    clase = prompt(
-      "Escribe la clase que deseas conocer:\n" +
-      listar(personajes) +
-      "\n0 Para volver"
-    ).toLowerCase();
-  } while (clase !== "0")
+    renderizarPersonajes(array, contenedorTarjetas)
+  }
+
+  function seleccionJugadorDos(array) {
+    let titulo = document.createElement("div")
+    titulo.classList.add("titulo")
+    titulo.innerHTML = `<h2> Jugador dos, elige tu campeón </h2><input id="filtroJugadorDos" placeholder="Filtra por clase/raza">`
+    contenedor.appendChild(titulo)
+
+    let contenedorTarjetas = document.createElement("div")
+    contenedorTarjetas.classList.add("contenedorTarjetas")
+    contenedor.appendChild(contenedorTarjetas)
+
+    function filtrarPersonajes(array, filtro) {
+      const filtroMin = filtro.toLowerCase()
+      const personajesFiltrados = array.filter(personaje => {
+        const clase = personaje.clase.toLowerCase()
+        const raza = personaje.raza.toLowerCase()
+        return clase.includes(filtroMin) || raza.includes(filtroMin)
+      })
+      return personajesFiltrados
+    }
+
+    function renderizarPersonajes(personajes, contenedor) {
+      contenedor.innerHTML = ""
+
+      personajes.forEach(personaje => {
+        let tarjetaPersonaje = renderizar(personaje, contenedorTarjetas)
+
+        tarjetaPersonaje.addEventListener("click", () => {
+          sessionStorage.setItem("jugadorDos", JSON.stringify(personaje))
+          batalla(JSON.parse(sessionStorage.getItem("jugadorUno")), personaje)
+        })
+      })
+    }
+
+    let inputJugadorDos = document.getElementById("filtroJugadorDos")
+    inputJugadorDos.addEventListener("input", () => {
+      const filtro = inputJugadorDos.value
+      const personajesFiltrados = filtrarPersonajes(array, filtro)
+      renderizarPersonajes(personajesFiltrados, contenedorTarjetas)
+    })
+
+    renderizarPersonajes(array, contenedorTarjetas)
+  }
+
+  function batalla(jugadorUno, jugadorDos) {
+    contenedor.innerHTML = `
+      <h2 class="inicioBatalla">¡COMIENZA LA BATALLA!</h2>
+    `
+
+    const h2 = document.querySelector('.inicioBatalla')
+
+    h2.addEventListener('animationend', () => {
+      ocultar(h2)
+
+      const personajesSeleccionados = [
+        jugadorUno,
+        jugadorDos
+      ]
+
+      setTimeout(() => {
+        contenedor.remove()
+        let contenedorBatalla = document.querySelector(".contenedorBatalla")
+        let tituloUno = document.createElement("div")
+        tituloUno.classList.add("tituloUno")
+        let tituloDos = document.createElement("div")
+        tituloDos.classList.add("tituloDos")
+        let tarjetaUno = document.createElement("div")
+        tarjetaUno.classList.add("tarjetaUno")
+        let tarjetaDos = document.createElement("div")
+        tarjetaDos.classList.add("tarjetaDos")
+        let btnUno = document.createElement("div")
+        btnUno.classList.add("btnUno")
+        let btnDos = document.createElement("div")
+        btnDos.classList.add("btnDos")
+        let resultado = document.createElement("div")
+        resultado.classList.add("resultado")
+
+
+        contenedorBatalla.append(tituloUno, tituloDos, tarjetaUno, tarjetaDos, resultado, btnUno, btnDos)
+
+        let tarjetaJugadorUno = renderizar(personajesSeleccionados[0], tarjetaUno)
+        let tarjetaJugadorDos = renderizar(personajesSeleccionados[1], tarjetaDos)
+
+        tarjetaJugadorUno.classList.remove("hoverTarjeta")
+        tarjetaJugadorUno.classList.add("contenedorTarjeta")
+        tarjetaJugadorDos.classList.remove("hoverTarjeta")
+        tarjetaJugadorDos.classList.add("contenedorTarjeta")
+
+        function realizarTurno(booleano) {
+          if (booleano && jugadorUno.vida > 0) {
+            mensajeBatalla(jugadorUno, tarjetaUno, tarjetaDos, tituloUno, btnUno, resultado)
+            btnUno.querySelector(".btnAb").addEventListener("click", () => {
+              ganador("¡Jugador dos ganó!")})
+            resultado.querySelector(".dado").addEventListener("click", () => {
+              batallaTurnos(jugadorUno, jugadorDos, tarjetaJugadorUno, tarjetaJugadorDos, resultado)
+              // Verificar si el jugador dos perdió
+              if (jugadorDos.vida <= 0) {
+                // Mostrar mensaje de victoria del jugador uno
+                ganador("¡Jugador uno ganó!")
+              } else {
+                setTimeout(() => {
+                  ocultarTurno(tituloUno)
+                  ocultarTurno(btnUno)
+                  // Mostrar los elementos del jugador dos
+                  mostrarTurno(tituloDos)
+                  mostrarTurno(btnDos)
+                  realizarTurno(false)
+                }, 3000)
+              }
+            })
+          } else if (!booleano && jugadorDos.vida > 0) {
+            mensajeBatalla(jugadorDos, tarjetaDos, tarjetaUno, tituloDos, btnDos, resultado)
+            btnDos.querySelector(".btnAb").addEventListener("click", () => {
+              ganador("¡Jugador uno ganó!")})
+            resultado.querySelector(".dado").addEventListener("click", () => {
+              batallaTurnos(jugadorDos, jugadorUno, tarjetaJugadorDos, tarjetaJugadorUno, resultado)
+              // Verificar si el jugador uno perdió
+              if (jugadorUno.vida <= 0) {
+                // Mostrar mensaje de victoria del jugador dos
+                ganador("¡Jugador dos ganó!")
+              } else {
+                setTimeout(() => {
+                  ocultarTurno(tituloDos)
+                  ocultarTurno(btnDos)
+                  // Mostrar los elementos del jugador uno
+                  mostrarTurno(tituloUno)
+                  mostrarTurno(btnUno)
+                  realizarTurno(true)
+                }, 3000)
+              }
+            })
+          }
+        }
+
+        realizarTurno(true)
+
+
+      }, 500)
+    })
+  }
+
+  //FUNCION LA LOGICA DE DAÑO SEGUN LA CLASE
+  function batallaTurnos(jugadorAt, jugadorDe, tarjetaJugadorAt, tarjetaJugadorDe, contenedor) {
+    const dado = lanzarDado()
+    if (jugadorAt.clase === "Guerrero") {
+      if (dado === 5 || dado === 10) {
+        contenedor.innerHTML = `
+          <h2 class="resultadoDado">${dado}</h2>
+          <h3 class="resultadoInfo">Has fallado el golpe</h3>`
+      } else {
+        jugadorDe.vida -= jugadorAt.daño + dado
+        contenedor.innerHTML = `
+          <h2 class="resultadoDado">${dado}</h2>
+          <h3 class="resultadoInfo">Generas ${jugadorAt.daño + dado} de daño</h3>`
+        if (jugadorDe.vida < 0) {
+          jugadorDe.vida = 0
+        }
+        tarjetaJugadorDe.querySelector(".vidaTarjeta p").textContent = jugadorDe.vida
+        tarjetaJugadorDe.classList.add("shake")
+        setTimeout(() => {
+          tarjetaJugadorDe.classList.remove("shake")
+        }, 500)
+      }
+    } else if (jugadorAt.clase === "Asesino") {
+      if (dado % 2 !== 0) {
+        jugadorDe.vida -= jugadorAt.daño * 3
+        contenedor.innerHTML = `
+        <h2 class="resultadoDado">${dado}</h2>
+        <h3 class="resultadoInfo">Apuñalas por ${jugadorAt.daño * 3} de daño</h3>`
+        if (jugadorDe.vida < 0) {
+          jugadorDe.vida = 0
+        }
+        tarjetaJugadorDe.querySelector(".vidaTarjeta p").textContent = jugadorDe.vida
+        tarjetaJugadorDe.classList.add("shake")
+        setTimeout(() => {
+          tarjetaJugadorDe.classList.remove("shake")
+        }, 500)
+      } else {
+        jugadorDe.vida -= jugadorAt.daño
+        contenedor.innerHTML = `
+          <h2 class="resultadoDado">${dado}</h2>
+          <h3 class="resultadoInfo">Generas ${jugadorAt.daño} de daño</h3>`
+        if (jugadorDe.vida < 0) {
+          jugadorDe.vida = 0
+        }
+        tarjetaJugadorDe.querySelector(".vidaTarjeta p").textContent = jugadorDe.vida
+        tarjetaJugadorDe.classList.add("shake")
+        setTimeout(() => {
+          tarjetaJugadorDe.classList.remove("shake")
+        }, 500)
+      }
+    } else if (jugadorAt.clase === "Paladín") {
+      if (dado === 2 || dado === 6 || dado === 12) {
+        jugadorDe.vida -= jugadorAt.daño + 10
+        contenedor.innerHTML = `
+        <h2 class="resultadoDado">${dado}</h2>
+        <h3 class="resultadoInfo">Ataque potenciado de ${jugadorAt.daño + 10} puntos</h3>`
+        if (jugadorDe.vida < 0) {
+          jugadorDe.vida = 0
+        }
+        tarjetaJugadorDe.querySelector(".vidaTarjeta p").textContent = jugadorDe.vida
+        tarjetaJugadorDe.classList.add("shake")
+        setTimeout(() => {
+          tarjetaJugadorDe.classList.remove("shake")
+        }, 500)
+      } else {
+        jugadorDe.vida -= jugadorAt.daño + dado
+        contenedor.innerHTML = `
+        <h2 class="resultadoDado">${dado}</h2>
+        <h3 class="resultadoInfo">Generas ${jugadorAt.daño} de daño</h3>`
+        if (jugadorDe.vida < 0) {
+          jugadorDe.vida = 0
+        }
+        tarjetaJugadorDe.querySelector(".vidaTarjeta p").textContent = jugadorDe.vida
+        tarjetaJugadorDe.classList.add("shake")
+        setTimeout(() => {
+          tarjetaJugadorDe.classList.remove("shake")
+        }, 500)
+      }
+    } else if (jugadorAt.clase === "Mago") {
+      if (dado % 2 === 0) {
+        jugadorDe.vida -= jugadorAt.daño * 2
+        contenedor.innerHTML = `
+        <h2 class="resultadoDado">${dado}</h2>
+        <h3 class="resultadoInfo">Daño magico de ${jugadorAt.daño * 2}</h3>`
+        if (jugadorDe.vida < 0) {
+          jugadorDe.vida = 0
+        }
+        tarjetaJugadorDe.querySelector(".vidaTarjeta p").textContent = jugadorDe.vida
+        tarjetaJugadorDe.classList.add("shake")
+        setTimeout(() => {
+          tarjetaJugadorDe.classList.remove("shake")
+        }, 500)
+      } else {
+        jugadorDe.vida -= jugadorAt.daño
+        contenedor.innerHTML = `
+        <h2 class="resultadoDado">${dado}</h2>
+        <h3 class="resultadoInfo">Generas ${jugadorAt.daño} de daño</h3>`
+        if (jugadorDe.vida < 0) {
+          jugadorDe.vida = 0
+        }
+        tarjetaJugadorDe.querySelector(".vidaTarjeta p").textContent = jugadorDe.vida
+        tarjetaJugadorDe.classList.add("shake")
+        setTimeout(() => {
+          tarjetaJugadorDe.classList.remove("shake")
+        }, 500)
+      }
+    } else if (jugadorAt.clase === "Druida") {
+      if (dado % 2 === 0) {
+        jugadorDe.vida -= jugadorAt.daño
+        jugadorAt.vida += jugadorAt.daño
+        contenedor.innerHTML = `
+        <h2 class="resultadoDado">${dado}</h2>
+        <h3 class="resultadoInfo">Absorbes ${jugadorAt.daño} puntos de vida</h3>`
+        if (jugadorDe.vida < 0) {
+          jugadorDe.vida = 0
+        }
+        tarjetaJugadorDe.querySelector(".vidaTarjeta p").textContent = jugadorDe.vida
+        tarjetaJugadorDe.classList.add("shake")
+        setTimeout(() => {
+          tarjetaJugadorDe.classList.remove("shake")
+        }, 500)
+        tarjetaJugadorAt.querySelector(".vidaTarjeta p").textContent = jugadorAt.vida
+      } else {
+        jugadorDe.vida -= jugadorAt.daño
+        contenedor.innerHTML = `
+        <h2 class="resultadoDado">${dado}</h2>
+        <h3 class="resultadoInfo">Generas ${jugadorAt.daño} de daño</h3>`
+        if (jugadorDe.vida < 0) {
+          jugadorDe.vida = 0
+        }
+        tarjetaJugadorDe.querySelector(".vidaTarjeta p").textContent = jugadorDe.vida
+        tarjetaJugadorDe.classList.add("shake")
+        setTimeout(() => {
+          tarjetaJugadorDe.classList.remove("shake")
+        }, 500)
+      }
+    }
+  }
+
+  //FUNCION PARA MOSTRAR EL TURNO DEL JUGADOR
+  function mensajeBatalla(jugador, fxAt, fxDe, contenedorTitulo, contenedorAccion, contenedorResultado) {
+    fxAt.classList.add("fx")
+    fxDe.classList.remove("fx")
+    contenedorTitulo.innerHTML = `<h2>Turno ${jugador.clase}</h2>`
+    contenedorAccion.innerHTML = `<button class="btnAb">Abandonar</button>`
+    contenedorResultado.innerHTML = `<img class="dado" src="../img/dado.svg" alt="">`
+  }
+
+  // FUNCION PARA LANZAR EL DADO
+  function lanzarDado() {
+    return Math.floor(Math.random() * 12) + 1
+  }
+
+  //FUNCIONES PARA QUITAR Y MOSTRAR ELEMENTOS
+  function ocultar(tag) {
+    tag.classList.add("ocultar")
+  }
+
+  function mostrar(tag) {
+    tag.classList.remove("ocultar")
+  }
+
+  //FUNCIONES PARA TRANSICIONAR ENTRE TURNOS
+  function ocultarTurno(tag) {
+    tag.classList.remove("mostrarTurno")
+    tag.classList.add("ocultarTurno")
+  }
+
+  function mostrarTurno(tag) {
+    tag.classList.remove("ocultarTurno")
+    tag.classList.add("mostrarTurno")
+  }
+
+  //FUNCION MENSAJE GANADOR
+  function ganador(mensaje) {
+    Swal.fire({
+      title: mensaje,
+      confirmButtonText: 'Jugar nuevamente',
+      confirmButtonColor: '#f25f4c',
+      background: '#a7a9bed3',
+      customClass: {
+        title: 'sweetText',
+      }
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.href = 'index.html'
+      }
+    })
+  }
+
+  mostrarMenuPrincipal()
+
 }
 
-let opcion = "BATALLAS EPICAS \n 1- Jugar \n 2- Instrucciones \n 3- Conoce las clases  \n 0- Salir"
-let mensajeBienvenida
-let mensajeInstruccion = "'BATALLAS EPICAS', es un juego por turnos de 2 jugadores \n 1- Cada jugador seleccionara un campeon, cada campeon tiene su habilidad especial\n2- El combate consiste en lanzar el dado, cada campeon tiene ciertas caracteristicas basicas y una habilidad especial que se activara si el dado saca ciertos numeros\n4- El jugador que logre dejar en cero la vida de su adversario ganara la BATALLA EPICA!"
-let mesajePersonaje = ""
 miPrograma()
-
-
-
-
-
-
-
-

@@ -58,11 +58,12 @@
     box-shadow: 1px -2px 5px #0f0e17;
 }
 
-.btnJugar, .btnInst{
+.btnJugar,
+.btnInst {
     padding: 0.5rem 1.5rem;
     font-size: 1rem;
-    font-family:'Belanosima', sans-serif;
-    background-color:#fffffe9d;
+    font-family: 'Belanosima', sans-serif;
+    background-color: #fffffeaf;
     cursor: pointer;
     outline: none;
     border: none;
@@ -71,11 +72,15 @@
     width: 10rem;
 }
 
-.btnJugar:hover{
+.btnJugar {
+    font-weight: bold;
+}
+
+.btnJugar:hover {
     background-color: #fffffe;
 }
 
-.btnInst:hover{
+.btnInst:hover {
     background-color: #fffffe;
 }
 
@@ -96,16 +101,21 @@
     color: #fffffe;
     font-family: 'Belanosima', sans-serif;
     font-weight: 600;
-    font-size: 1.2rem;
+    font-size: 2rem;
     gap: 2rem;
 }
 
 .titulo input {
     width: 200px;
+    border-radius: 1rem;
+    height: 1.5rem;
+    outline: none;
+    text-align: center;
+    font-size: 1rem;
 }
 
 .inicioBatalla {
-    color: #333333;
+    color: #fffffe;
     font-family: 'Belanosima', sans-serif;
     font-size: 4rem;
     animation: fade 3s 1 forwards;
@@ -130,6 +140,7 @@
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 0.5fr 3fr 0.5fr;
     gap: 0px 0px;
+    column-gap: 2rem;
     grid-auto-flow: column;
     grid-template-areas:
         "tituloUno . tituloDos"
@@ -137,18 +148,39 @@
         "btnUno . btnDos";
 }
 
+.resultado {
+    grid-area: resultado;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.dado {
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    transition: transform 0.5s ease;
+}
+
+.dado:hover {
+    filter: drop-shadow(0px 0px 30px #d43060);
+    transform: translateY(-20px);
+}
+
 .tarjetaUno {
     justify-self: center;
     grid-area: tarjetaUno;
-    color: #333333;
-    font-family: 'Belanosima', sans-serif;
+}
+
+.fx {
+    filter: drop-shadow(3px 3px 15px #fffffeb0);
 }
 
 .tituloUno {
     justify-self: center;
     margin-bottom: 1.5rem;
     grid-area: tituloUno;
-    color: #333333;
+    color: #fffffe;
     font-family: 'Belanosima', sans-serif;
 }
 
@@ -169,7 +201,7 @@
     justify-self: center;
     margin-bottom: 1.5rem;
     grid-area: tituloDos;
-    color: #333333;
+    color: #fffffe;
     font-family: 'Belanosima', sans-serif;
 }
 
@@ -186,25 +218,71 @@
     grid-area: resultado;
 }
 
-.btnAt,
-.btnAb {
-    display: inline-block;
-    margin-top: 1.5rem;
-    padding: 0.5rem;
-    font-size: 0.8rem;
-    font-weight: bold;
-    text-align: center;
-    text-decoration: none;
-    border-radius: 5px;
-    cursor: pointer;
+.resultadoDado {
+    justify-self: center;
+    align-self: center;
+    color: #d43060;
     font-family: 'Belanosima', sans-serif;
+    font-weight: 400;
+    font-size: 10rem;
+}
+
+.resultadoInfo {
+    justify-self: center;
+    align-self: center;
+    color: #fffffe;
+    font-family: 'Belanosima', sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+}
+
+.btnAb {
+    margin-top: 1.5rem;
+    padding: 0.5rem 0.5rem;
+    font-size: 0.8rem;
+    font-family: 'Belanosima', sans-serif;
+    background-color: #fffffe9d;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    border-radius: 20px;
+    color: #393840;
+}
+
+.btnAb:hover {
+    background-color: #fffffe;
 }
 
 .sweetText {
     font-family: 'Belanosima', sans-serif;
-    font-size: 1rem;
-    color: #D61C4E;
-    ;
+    font-size: 2rem;
+    color: #0f0e17;
+}
+
+.sweetTextIns {
+    font-family: 'Belanosima', sans-serif;
+    font-weight: 200;
+    font-size: 1.2rem;
+    color: #0f0e17;
+}
+
+.contenedorInst {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 1rem 0;
+}
+
+.imgInst {
+    width: 50px;
+    height: 50px;
+}
+
+.infoInst {
+    font-family: 'Belanosima', sans-serif;
+    font-weight: 200;
+    font-size: 0.8rem;
+    color: #0f0e17;
 }
 
 
@@ -231,6 +309,7 @@
 .contenedorTarjeta {
     display: flex;
     flex-direction: column;
+    position: relative;
     align-items: center;
     border-radius: 20px;
     width: 200px;
@@ -248,11 +327,12 @@
     height: auto;
     box-sizing: content-box;
     font-family: 'Belanosima', sans-serif;
+    cursor: pointer;
 }
 
 .hoverTarjeta:hover {
     transform: scale(1.1);
-    box-shadow: 0 0 20px #fffffe
+    box-shadow: 0 0 20px #fffffe;
 }
 
 .imgTarjeta img {
@@ -399,4 +479,40 @@
 
 .ocultar {
     display: none;
+}
+
+.ocultarTurno {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.mostrarTurno {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.shake {
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    50% {
+        transform: translateX(5px);
+    }
+
+    75% {
+        transform: translateX(-5px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
 }

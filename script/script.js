@@ -76,7 +76,7 @@ function miPrograma() {
 
   function mostrarInstrucciones() {
     Swal.fire({
-      padding:'2rem',
+      padding: '2rem',
       title: '"BATALLA ÉPICA" es un juego por turnos para 2 jugadores. Cada jugador selecciona un campeón, cada uno con su habilidad especial única. El combate se lleva a cabo lanzando un dado, donde cada campeón tiene características básicas y una habilidad especial que se activa al obtener ciertos números en el dado. El jugador que logre reducir la vida de su adversario a cero será el ganador de esta épica batalla.',
       confirmButtonColor: '#f25f4c',
       background: '#fffffe',
@@ -129,7 +129,8 @@ function miPrograma() {
 
     let titulo = document.createElement("div")
     titulo.classList.add("titulo")
-    titulo.innerHTML = `<h2> Jugador uno, elige tu campeón </h2><input id="filtroJugadorUno" placeholder="Filtra por clase/raza">`
+    titulo.innerHTML = `
+      <h2> Jugador uno, elige tu campeón </h2><input id="filtroJugadorUno" placeholder="Filtra por clase/raza">`
     contenedor.appendChild(titulo)
 
     let contenedorTarjetas = document.createElement("div")
@@ -150,7 +151,7 @@ function miPrograma() {
       contenedor.innerHTML = ""
 
       personajes.forEach(personaje => {
-        let tarjetaPersonaje = renderizar(personaje, contenedor);
+        let tarjetaPersonaje = renderizar(personaje, contenedor)
 
         tarjetaPersonaje.addEventListener("click", () => {
           sessionStorage.setItem("jugadorUno", JSON.stringify(personaje))
@@ -158,7 +159,7 @@ function miPrograma() {
           let nuevasTarjetas = array.filter(p => p !== personaje)
 
           ocultar(contenedorTarjetas)
-          ocultar(titulo);
+          ocultar(titulo)
           seleccionJugadorDos(nuevasTarjetas)
         })
       })
@@ -177,7 +178,8 @@ function miPrograma() {
   function seleccionJugadorDos(array) {
     let titulo = document.createElement("div")
     titulo.classList.add("titulo")
-    titulo.innerHTML = `<h2> Jugador dos, elige tu campeón </h2><input id="filtroJugadorDos" placeholder="Filtra por clase/raza">`
+    titulo.innerHTML = `
+      <h2> Jugador dos, elige tu campeón </h2><input id="filtroJugadorDos" placeholder="Filtra por clase/raza">`
     contenedor.appendChild(titulo)
 
     let contenedorTarjetas = document.createElement("div")
@@ -265,7 +267,8 @@ function miPrograma() {
           if (booleano && jugadorUno.vida > 0) {
             mensajeBatalla(jugadorUno, tarjetaUno, tarjetaDos, tituloUno, btnUno, resultado)
             btnUno.querySelector(".btnAb").addEventListener("click", () => {
-              ganador("¡Jugador dos ganó!")})
+              ganador("¡Jugador dos ganó!")
+            })
             resultado.querySelector(".dado").addEventListener("click", () => {
               batallaTurnos(jugadorUno, jugadorDos, tarjetaJugadorUno, tarjetaJugadorDos, resultado)
               // Verificar si el jugador dos perdió
@@ -286,7 +289,8 @@ function miPrograma() {
           } else if (!booleano && jugadorDos.vida > 0) {
             mensajeBatalla(jugadorDos, tarjetaDos, tarjetaUno, tituloDos, btnDos, resultado)
             btnDos.querySelector(".btnAb").addEventListener("click", () => {
-              ganador("¡Jugador uno ganó!")})
+              ganador("¡Jugador uno ganó!")
+            })
             resultado.querySelector(".dado").addEventListener("click", () => {
               batallaTurnos(jugadorDos, jugadorUno, tarjetaJugadorDos, tarjetaJugadorUno, resultado)
               // Verificar si el jugador uno perdió

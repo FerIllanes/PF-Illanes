@@ -1,61 +1,23 @@
-
 function miPrograma() {
 
-  const personajes = [
-    {
-      clase: "Guerrero",
-      raza: "Orco",
-      vida: 200,
-      daño: 18,
-      habilidad: "Genera daño base + el numero obtenido, si el numero es 5-10 fallará",
-      titulo: "tituloGue",
-      borde: "bordeGue",
-      rutaImg: "guerrero.png"
-    },
-    {
-      clase: "Asesino",
-      raza: "Elfo Oscuro",
-      vida: 100,
-      daño: 15,
-      habilidad: "Numero Impar, Apuñala y triplica el daño base",
-      titulo: "tituloAse",
-      borde: "bordeAse",
-      rutaImg: "asesino.png"
-    },
-    {
-      clase: "Paladín",
-      raza: "Humano",
-      vida: 150,
-      daño: 20,
-      habilidad: "Numero: 2-6-12, potencia el daño base con un 50% del mismo",
-      titulo: "tituloPal",
-      borde: "bordePal",
-      rutaImg: "paladin.png"
-    },
-    {
-      clase: "Mago",
-      raza: "Gnomo",
-      vida: 110,
-      daño: 20,
-      habilidad: "Numero par, ataque magico que duplica el daño base",
-      titulo: "tituloMag",
-      borde: "bordeMag",
-      rutaImg: "mago.png"
-    },
-    {
-      clase: "Druida",
-      raza: "Entidad",
-      vida: 120,
-      daño: 20,
-      habilidad: "Numero par, absorbe la vida de su enemigo igual al daño base",
-      titulo: "tituloDrui",
-      borde: "bordeDrui",
-      rutaImg: "druida.png"
-    }
-  ]
 
   let contenedor = document.querySelector(".contenedorPrincipal")
   let contenedorInicio = document.querySelector(".contenedorInicio")
+
+  function buscarDato(dataArray) {
+  
+    fetch('./db.json')
+      .then(response => response.json())
+      .then(data => {
+        dataArray = data
+      })
+      .catch(error => {
+        console.error('Error al cargar el archivo JSON:', error)
+      })
+    
+    }
+    const personajes = []
+    buscarDato(personajes)
 
   function mostrarMenuPrincipal() {
     ocultar(contenedor)
@@ -151,7 +113,7 @@ function miPrograma() {
       contenedor.innerHTML = ""
 
       personajes.forEach(personaje => {
-        let tarjetaPersonaje = renderizar(personaje, contenedor)
+        let tarjetaPersonaje = renderizar(personajes, contenedor)
 
         tarjetaPersonaje.addEventListener("click", () => {
           sessionStorage.setItem("jugadorUno", JSON.stringify(personaje))
@@ -510,6 +472,7 @@ function miPrograma() {
 
   mostrarMenuPrincipal()
 
-}
+} 
 
-miPrograma()
+
+

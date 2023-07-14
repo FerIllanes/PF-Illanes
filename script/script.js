@@ -1,23 +1,8 @@
-function miPrograma() {
 
+function miPrograma() {
 
   let contenedor = document.querySelector(".contenedorPrincipal")
   let contenedorInicio = document.querySelector(".contenedorInicio")
-
-  function buscarDato(dataArray) {
-  
-    fetch('./db.json')
-      .then(response => response.json())
-      .then(data => {
-        dataArray = data
-      })
-      .catch(error => {
-        console.error('Error al cargar el archivo JSON:', error)
-      })
-    
-    }
-    const personajes = []
-    buscarDato(personajes)
 
   function mostrarMenuPrincipal() {
     ocultar(contenedor)
@@ -26,14 +11,18 @@ function miPrograma() {
       <hr>
       <h3>HEROES Y LEYENDAS</h3>
       <button class="btnJugar">JUGAR</button>
-      <button class="btnInst">INSTRUCCIONES</button> `
+      <button class="btnInst">INSTRUCCIONES</button>`
 
     const botonJugar = document.querySelector(".btnJugar")
-    botonJugar.addEventListener("click", () => seleccionJugadorUno(personajes))
+    botonJugar.addEventListener("click", () => {
+      fetch('./db.json')
+        .then(response => response.json())
+        .then(data => seleccionJugadorUno(data.personajes))
+        .catch(error => console.error('Error al obtener el archivo JSON:', error))
+    })
 
     const botonInstrucciones = document.querySelector(".btnInst")
     botonInstrucciones.addEventListener("click", mostrarInstrucciones)
-
   }
 
   function mostrarInstrucciones() {
@@ -91,8 +80,7 @@ function miPrograma() {
 
     let titulo = document.createElement("div")
     titulo.classList.add("titulo")
-    titulo.innerHTML = `
-      <h2> Jugador uno, elige tu campeón </h2><input id="filtroJugadorUno" placeholder="Filtra por clase/raza">`
+    titulo.innerHTML = `<h2> Jugador uno, elige tu campeón </h2><input id="filtroJugadorUno" placeholder="Filtra por clase/raza">`
     contenedor.appendChild(titulo)
 
     let contenedorTarjetas = document.createElement("div")
@@ -113,7 +101,7 @@ function miPrograma() {
       contenedor.innerHTML = ""
 
       personajes.forEach(personaje => {
-        let tarjetaPersonaje = renderizar(personajes, contenedor)
+        let tarjetaPersonaje = renderizar(personaje, contenedor);
 
         tarjetaPersonaje.addEventListener("click", () => {
           sessionStorage.setItem("jugadorUno", JSON.stringify(personaje))
@@ -121,7 +109,7 @@ function miPrograma() {
           let nuevasTarjetas = array.filter(p => p !== personaje)
 
           ocultar(contenedorTarjetas)
-          ocultar(titulo)
+          ocultar(titulo);
           seleccionJugadorDos(nuevasTarjetas)
         })
       })
@@ -140,8 +128,7 @@ function miPrograma() {
   function seleccionJugadorDos(array) {
     let titulo = document.createElement("div")
     titulo.classList.add("titulo")
-    titulo.innerHTML = `
-      <h2> Jugador dos, elige tu campeón </h2><input id="filtroJugadorDos" placeholder="Filtra por clase/raza">`
+    titulo.innerHTML = `<h2> Jugador dos, elige tu campeón </h2><input id="filtroJugadorDos" placeholder="Filtra por clase/raza">`
     contenedor.appendChild(titulo)
 
     let contenedorTarjetas = document.createElement("div")
@@ -472,7 +459,6 @@ function miPrograma() {
 
   mostrarMenuPrincipal()
 
-} 
+}
 
-
-
+miPrograma()

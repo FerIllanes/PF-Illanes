@@ -53,7 +53,7 @@
 }
 
 .contenedorInicio hr {
-    width: 50rem;
+    width: 70%;
     line-height: 2rem;
     box-shadow: 1px -2px 5px #0f0e17;
 }
@@ -513,4 +513,65 @@
     100% {
         transform: translateX(0);
     }
+}
+
+
+@media screen and (max-width: 768px) {
+    .contenedorInicio {
+        height: 70vh;
+        width: 90vw;
+    }
+
+    .contenedorInicio h2 {
+        font-size: 6rem;
+        line-height: 8rem;
+    }
+
+    .contenedorInicio h3 {
+        font-size: 1.5rem;
+        letter-spacing: 0.5rem;
+    }
+
+    .titulo input {
+        width: 150px;
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .contenedorInicio {
+        height: 60vh;
+        width: 90vw;
+    }
+
+    .contenedorInicio h2 {
+        font-size: 4rem;
+        line-height: 5rem;
+    }
+
+    .contenedorInicio h3 {
+        font-size: 1rem;
+        letter-spacing: 0.3rem;
+    }
+    
+    .contenedorInicio hr {
+        line-height: 1rem;
+        width: 80%;
+    }
+
+    .btnJugar, .btnInst {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+        width: 8rem;
+    }
+    
+    .titulo input {
+        width: 120px;
+        font-size: 0.7rem;
+    }
+
+    .titulo {
+        text-align: center;
+    }
+
 }

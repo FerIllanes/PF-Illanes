@@ -1,11 +1,10 @@
 
 function miPrograma() {
 
-  let contenedor = document.querySelector(".contenedorPrincipal")
   let contenedorInicio = document.querySelector(".contenedorInicio")
-
+  let contenedorSeleccion = document.querySelector(".contenedorSeleccion")
+  
   function mostrarMenuPrincipal() {
-    ocultar(contenedor)
     contenedorInicio.innerHTML = `
       <h2>BATALLA ÉPICA</h2>
       <hr>
@@ -59,7 +58,6 @@ function miPrograma() {
         <div class="vidaTarjeta">
           <img src="./img/rubi.png">
           <p>${personaje.vida}</p>
-          <div class="toastContainer"></div>
         </div>
         <div class="danioTarjeta">
           <img src="./img/espada.png">
@@ -75,17 +73,18 @@ function miPrograma() {
   }
 
   function seleccionJugadorUno(array) {
-    mostrar(contenedor)
+
+    mostrar(contenedorSeleccion)
     ocultar(contenedorInicio)
 
     let titulo = document.createElement("div")
-    titulo.classList.add("titulo")
     titulo.innerHTML = `<h2> Jugador uno, elige tu campeón </h2><input id="filtroJugadorUno" placeholder="Filtra por clase/raza">`
-    contenedor.appendChild(titulo)
+    titulo.classList.add("titulo")
 
     let contenedorTarjetas = document.createElement("div")
     contenedorTarjetas.classList.add("contenedorTarjetas")
-    contenedor.appendChild(contenedorTarjetas)
+
+    contenedorSeleccion.append(titulo, contenedorTarjetas)
 
     function filtrarPersonajes(array, filtro) {
       const filtroMin = filtro.toLowerCase()
@@ -95,25 +94,7 @@ function miPrograma() {
         return clase.includes(filtroMin) || raza.includes(filtroMin)
       })
       return personajesFiltrados
-    }
-
-    function renderizarPersonajes(personajes, contenedor) {
-      contenedor.innerHTML = ""
-
-      personajes.forEach(personaje => {
-        let tarjetaPersonaje = renderizar(personaje, contenedor);
-
-        tarjetaPersonaje.addEventListener("click", () => {
-          sessionStorage.setItem("jugadorUno", JSON.stringify(personaje))
-          contenedorTarjetas.removeChild(tarjetaPersonaje)
-          let nuevasTarjetas = array.filter(p => p !== personaje)
-
-          ocultar(contenedorTarjetas)
-          ocultar(titulo);
-          seleccionJugadorDos(nuevasTarjetas)
-        })
-      })
-    }
+    }  
 
     let inputJugadorUno = document.getElementById("filtroJugadorUno")
     inputJugadorUno.addEventListener("input", () => {
@@ -122,18 +103,38 @@ function miPrograma() {
       renderizarPersonajes(personajesFiltrados, contenedorTarjetas)
     })
 
+    function renderizarPersonajes(personajes, contenedor) {
+      contenedor.innerHTML = ""
+  
+      personajes.forEach(personaje => {
+        let tarjetaPersonaje = renderizar(personaje, contenedor)
+  
+        tarjetaPersonaje.addEventListener("click", () => {
+          sessionStorage.setItem("jugadorUno", JSON.stringify(personaje))
+          contenedorTarjetas.removeChild(tarjetaPersonaje)
+          let nuevasTarjetas = personajes.filter(p => p !== personaje)
+  
+          ocultar(contenedorTarjetas)
+          ocultar(titulo)
+          seleccionJugadorDos(nuevasTarjetas)
+        })
+      })
+    }
+
     renderizarPersonajes(array, contenedorTarjetas)
+
   }
 
   function seleccionJugadorDos(array) {
+    
     let titulo = document.createElement("div")
     titulo.classList.add("titulo")
     titulo.innerHTML = `<h2> Jugador dos, elige tu campeón </h2><input id="filtroJugadorDos" placeholder="Filtra por clase/raza">`
-    contenedor.appendChild(titulo)
 
     let contenedorTarjetas = document.createElement("div")
     contenedorTarjetas.classList.add("contenedorTarjetas")
-    contenedor.appendChild(contenedorTarjetas)
+
+    contenedorSeleccion.append(titulo, contenedorTarjetas)
 
     function filtrarPersonajes(array, filtro) {
       const filtroMin = filtro.toLowerCase()

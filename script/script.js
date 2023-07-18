@@ -81,8 +81,8 @@ function miPrograma() {
     })
     return personajesFiltrados
   }
-  
-//EL PROBLEMA ESTA CUANDO FILTRAMOS EN EL INPUT E INVOCAMOS ESTA FUNCION, SE VACIA EL CONTENEDOR
+
+  //EL PROBLEMA ESTA CUANDO FILTRAMOS EN EL INPUT E INVOCAMOS ESTA FUNCION, SE VACIA EL CONTENEDOR
 
   function renderizarPersonajes(array, contenedor, jugador, titulo) {
     contenedor.innerHTML = ""
@@ -91,14 +91,36 @@ function miPrograma() {
       let tarjetaPersonaje = renderizar(personaje, contenedor)
       tarjetaPersonaje.addEventListener("click", () => {
         jugador === "uno"
-        ? (sessionStorage.setItem("jugadorUno", JSON.stringify(personaje)),
-           contenedor.removeChild(tarjetaPersonaje),
-           nuevasTarjetas = array.filter(p => p !== personaje),
-           ocultar(contenedor),
-           ocultar(titulo),
-           seleccionJugadorDos(nuevasTarjetas))
-        : (sessionStorage.setItem("jugadorDos", JSON.stringify(personaje)),
-           batalla(JSON.parse(sessionStorage.getItem("jugadorUno")), personaje))
+          ? (sessionStorage.setItem("jugadorUno", JSON.stringify(personaje)),
+            contenedor.removeChild(tarjetaPersonaje),
+            nuevasTarjetas = array.filter(p => p !== personaje),
+            ocultar(contenedor),
+            ocultar(titulo),
+            seleccionJugadorDos(nuevasTarjetas))
+          : (sessionStorage.setItem("jugadorDos", JSON.stringify(personaje)),
+            batalla(JSON.parse(sessionStorage.getItem("jugadorUno")), personaje))
+      })
+    })
+  }
+
+  function renderizarPersonajes(array, contenedor, jugador, titulo) {
+    contenedor.innerHTML = ""
+
+    array.forEach(personaje => {
+      let tarjetaPersonaje = renderizar(personaje, contenedor)
+      tarjetaPersonaje.addEventListener("click", () => {
+        jugador === "uno"
+          ? (sessionStorage.setItem("jugadorUno", JSON.stringify(personaje)),
+            contenedor.removeChild(tarjetaPersonaje),
+            console.log(array),
+            nuevasTarjetas = array.filter(p => p !== personaje),
+            console.log(nuevasTarjetas),
+            ocultar(contenedor),
+            ocultar(titulo),
+            seleccionJugadorDos(nuevasTarjetas),
+            console.log(nuevasTarjetas))
+          : (sessionStorage.setItem("jugadorDos", JSON.stringify(personaje)),
+            batalla(JSON.parse(sessionStorage.getItem("jugadorUno")), personaje))
       })
     })
   }
@@ -120,7 +142,6 @@ function miPrograma() {
     inputJugadorUno.addEventListener("input", () => {
       const filtro = inputJugadorUno.value
       const personajesFiltrados = filtrarPersonajes(array, filtro)
-      console.log(personajesFiltrados)
       renderizarPersonajes(personajesFiltrados, contenedorTarjetas, "uno", titulo)
     })
 
@@ -128,24 +149,24 @@ function miPrograma() {
   }
 
   function seleccionJugadorDos(array) {
-
+    console.log(array)
     let titulo = document.createElement("div")
     titulo.classList.add("titulo")
     titulo.innerHTML = `<h2> Jugador dos, elige tu campeón </h2><input id="filtroJugadorDos" placeholder="Filtra por clase/raza">`
 
-    let contenedorTarjetas = document.createElement("div")
-    contenedorTarjetas.classList.add("contenedorTarjetas")
+    let contenedorTarjetasDos = document.createElement("div")
+    contenedorTarjetasDos.classList.add("contenedorTarjetasDos")
 
-    contenedorSeleccion.append(titulo, contenedorTarjetas)
+    contenedorSeleccion.append(titulo, contenedorTarjetasDos)
 
     let inputJugadorDos = document.getElementById("filtroJugadorDos")
     inputJugadorDos.addEventListener("input", () => {
       const filtroDos = inputJugadorDos.value
       const personajesFiltradosDos = filtrarPersonajes(array, filtroDos)
-      renderizarPersonajes(personajesFiltradosDos, contenedorTarjetas, "dos", titulo)
+      renderizarPersonajes(personajesFiltradosDos, contenedorTarjetasDos, "dos", titulo)
     })
 
-    renderizarPersonajes(array, contenedorTarjetas, "dos", titulo)
+    renderizarPersonajes(array, contenedorTarjetasDos, "dos", titulo)
   }
 
   function batalla(jugadorUno, jugadorDos) {

@@ -141,7 +141,6 @@ function miPrograma() {
     inputJugadorUno.addEventListener("input", () => {
       const filtro = inputJugadorUno.value
       const personajesFiltrados = filtrarPersonajes(array, filtro)
-      console.log(personajesFiltrados)
       renderizarPersonajes(personajesFiltrados, contenedorTarjetas, "uno", titulo)
     })
 

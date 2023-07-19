@@ -103,16 +103,16 @@ function miPrograma() {
     })
   }
 
-  function renderizarPersonajes(array, contenedor, jugador, titulo) {
-    console.log(array)
+  function renderizarPersonajes(personajes, contenedor, jugador, titulo) {
+
     contenedor.innerHTML = ""
-    array.forEach(personaje => {
+    personajes.forEach(personaje => {
       let tarjetaPersonaje = renderizar(personaje, contenedor)
       tarjetaPersonaje.addEventListener("click", () => {
         if (jugador === "uno") {
           sessionStorage.setItem("jugadorUno", JSON.stringify(personaje))
           contenedor.removeChild(tarjetaPersonaje);
-          let nuevasTarjetas = array.filter(p => p !== personaje)
+          let nuevasTarjetas = personajes.filter(p => p !== personaje)
           ocultar(contenedor)
           ocultar(titulo)
           seleccionJugadorDos(nuevasTarjetas)

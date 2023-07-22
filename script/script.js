@@ -86,7 +86,6 @@ function miPrograma() {
     return personajesFiltrados
   }
 
-
   function seleccionJugadorUno(array,) {
     contenedor.removeChild(contenedorInicio)
     contenedor.appendChild(contenedorSeleccion)
@@ -222,7 +221,7 @@ function miPrograma() {
                   mostrarTurno(tituloDos)
                   mostrarTurno(btnDos)
                   realizarTurno(false)
-                }, 3000)
+                }, 2000)
               }
             })
           } else if (!booleano && jugadorDos.vida > 0) {
@@ -244,7 +243,7 @@ function miPrograma() {
                   mostrarTurno(tituloUno)
                   mostrarTurno(btnUno)
                   realizarTurno(true)
-                }, 3000)
+                }, 2000)
               }
             })
           }
@@ -413,10 +412,6 @@ function miPrograma() {
   //FUNCIONES PARA QUITAR Y MOSTRAR ELEMENTOS
   function ocultar(tag) {
     tag.classList.add("ocultar")
-  }
-
-  function mostrar(tag) {
-    tag.classList.remove("ocultar")
   }
 
   //FUNCIONES PARA TRANSICIONAR ENTRE TURNOS

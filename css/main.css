@@ -616,8 +616,9 @@ body {
 
     .contenedorBatalla {
         grid-template-columns: 0.5fr 0.8fr 0.5fr;
+        border: 5px ridge rgba(255, 193, 6, 0.89);
         gap: 1rem;
-        padding: 0.5rem;
+        padding: 0.5rem 4rem;
     }
 
     .tituloUno {

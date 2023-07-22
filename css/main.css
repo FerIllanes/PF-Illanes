@@ -6,9 +6,10 @@
     box-sizing: border-box;
 }
 
-body{
+body {
     background-color: #0f0e17;
 }
+
 /* --------------- CLASES GENERALES --------------- */
 
 
@@ -548,7 +549,7 @@ body{
         font-size: 1rem;
         letter-spacing: 0.3rem;
     }
-    
+
     .contenedorInicio hr {
         line-height: 1rem;
         width: 80%;
@@ -558,16 +559,17 @@ body{
         justify-content: start;
     }
 
-    .contenedorTarjetas{
+    .contenedorTarjetas {
         padding-bottom: 3rem;
     }
 
-    .btnJugar, .btnInst {
+    .btnJugar,
+    .btnInst {
         padding: 0.4rem 0.8rem;
         font-size: 0.8rem;
         width: 8rem;
     }
-    
+
     .titulo input {
         width: 200px;
         font-size: 0.7rem;
@@ -580,10 +582,93 @@ body{
         font-size: 1.5rem;
     }
 
-    .inicioBatalla{
+    .inicioBatalla {
         margin-top: 15rem;
         text-align: center;
         font-size: 3rem;
     }
 
+    .contenedorBatalla{
+        grid-template-columns: 0.5fr 0.8fr 0.5fr;
+        gap: 0;
+    }
+
+    .tituloUno{
+        align-self: center;
+        font-size: 0.6rem;
+        margin-bottom: 1rem;
+    }
+
+    .tituloDos{
+        align-self: center;
+        font-size: 0.6rem;
+        margin-bottom: 1rem;
+    }
+
+
+    .btnAb{
+        margin-top: 1rem;
+        font-size: 0.5rem;
+    }
+
+    .contenedorBatalla .contenedorTarjeta {
+        width: 120px;
+        height: 230px;
+    }
+
+    .contenedorBatalla .contenedorTarjeta img {
+        width: 120px;
+        height: 119px;
+    }
+
+    .contenedorBatalla .tituloTarjeta {
+        width: 120px;
+        height: 36px;
+    }
+
+    .contenedorBatalla .tituloTarjeta h2 {
+        font-size: 1rem;
+        line-height: 1rem;
+    }
+
+    .contenedorBatalla .tituloTarjeta h3 {
+        font-size: 0.7rem;
+    }
+
+    .contenedorBatalla .iconoTarjeta {
+        width: 120px;
+    }
+
+    .contenedorBatalla .iconoTarjeta img {
+        width: 15px;
+    }
+
+
+    .contenedorBatalla .descripcionTarjeta {
+        width: 120px;
+        height: 5px;
+    }
+
+    .contenedorBatalla .descripcionTarjeta p {
+        font-size: 0.5rem;
+        margin: -10px 10px;
+    }
+
+    .contenedorBatalla .iconoTarjeta img {
+        width: 15px;
+        height: 15px;
+    }
+
+    .dado {
+        width: 50px;
+        height: 55px;
+    }
+
+    .resultadoDado {
+        font-size: 5rem;
+    }
+    
+    .resultadoInfo {
+        font-size: 0.5rem;
+    }
 }

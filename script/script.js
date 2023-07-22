@@ -1,8 +1,12 @@
 
 function miPrograma() {
 
-  let contenedorInicio = document.querySelector(".contenedorInicio")
-  let contenedorSeleccion = document.querySelector(".contenedorSeleccion")
+  let contenedor = document.getElementById("contenedor")
+  let contenedorInicio = document.createElement("div")
+  contenedorInicio.classList.add("contenedorInicio")
+  contenedor.appendChild(contenedorInicio)
+  let contenedorSeleccion = document.createElement("div")
+  contenedorSeleccion.classList.add("contenedorSeleccion")
 
   function mostrarMenuPrincipal() {
     contenedorInicio.innerHTML = `
@@ -83,10 +87,9 @@ function miPrograma() {
   }
 
 
-  function seleccionJugadorUno(array) {
-    mostrar(contenedorSeleccion)
-    ocultar(contenedorInicio)
-
+  function seleccionJugadorUno(array,) {
+    contenedor.removeChild(contenedorInicio)
+    contenedor.appendChild(contenedorSeleccion)
     let titulo = document.createElement("div")
     titulo.classList.add("titulo")
     titulo.innerHTML = `<h2> Jugador uno, elige tu campeón </h2><input id="filtroJugadorUno" placeholder="Filtra por clase/raza">`
@@ -169,8 +172,10 @@ function miPrograma() {
       ]
 
       setTimeout(() => {
-        contenedorSeleccion.remove()
-        let contenedorBatalla = document.querySelector(".contenedorBatalla")
+        contenedor.removeChild(contenedorSeleccion)
+        let contenedorBatalla = document.createElement("div")
+        contenedorBatalla.classList.add("contenedorBatalla")
+        contenedor.appendChild(contenedorBatalla)
         let tituloUno = document.createElement("div")
         tituloUno.classList.add("tituloUno")
         let tituloDos = document.createElement("div")

@@ -6,6 +6,9 @@
     box-sizing: border-box;
 }
 
+body{
+    background-color: #0f0e17;
+}
 /* --------------- CLASES GENERALES --------------- */
 
 
@@ -14,7 +17,6 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    width: 100vw;
     background-color: #0f0e17;
 
 }
@@ -25,8 +27,8 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    height: 80vh;
-    width: 80vw;
+    height: 80%;
+    width: 80%;
     gap: 2rem;
     background-image: url(../img/fondo.png);
     background-repeat: no-repeat;
@@ -84,12 +86,12 @@
     background-color: #fffffe;
 }
 
-.contenedorPrincipal {
+.contenedorSeleccion {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    height: 100%;
     justify-content: center;
-    gap: 2rem;
-    flex-wrap: wrap;
+    gap: 3.5rem;
 }
 
 .titulo {
@@ -100,7 +102,7 @@
     font-family: 'Belanosima', sans-serif;
     font-weight: 600;
     font-size: 2rem;
-    gap: 2rem;
+    gap: 2.5rem;
 }
 
 .titulo input {
@@ -296,10 +298,7 @@
 
 .contenedorTarjetas {
     display: flex;
-    align-items: center;
     justify-content: center;
-    height: 50vh;
-    width: 100vw;
     gap: 2rem;
     flex-wrap: wrap;
 }
@@ -519,10 +518,7 @@
 
 
 @media screen and (max-width: 768px) {
-    .contenedorInicio {
-        height: 70vh;
-        width: 90vw;
-    }
+
 
     .contenedorInicio h2 {
         font-size: 6rem;
@@ -541,10 +537,7 @@
 }
 
 @media screen and (max-width: 480px) {
-    .contenedorInicio {
-        height: 60vh;
-        width: 90vw;
-    }
+
 
     .contenedorInicio h2 {
         font-size: 4rem;
@@ -561,6 +554,14 @@
         width: 80%;
     }
 
+    .contenedorSeleccion {
+        justify-content: start;
+    }
+
+    .contenedorTarjetas{
+        padding-bottom: 3rem;
+    }
+
     .btnJugar, .btnInst {
         padding: 0.4rem 0.8rem;
         font-size: 0.8rem;
@@ -568,12 +569,21 @@
     }
     
     .titulo input {
-        width: 120px;
+        width: 200px;
         font-size: 0.7rem;
     }
 
     .titulo {
+        margin: 1rem 3rem;
+        line-height: 3rem;
         text-align: center;
+        font-size: 1.5rem;
+    }
+
+    .inicioBatalla{
+        margin-top: 15rem;
+        text-align: center;
+        font-size: 3rem;
     }
 
 }
